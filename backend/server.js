@@ -1,6 +1,5 @@
 const express = require('express');
 const pool = require('./db');
-const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const app = express();
@@ -17,15 +16,14 @@ app.get('/', async (req, res) => {
   }
 });
 
-// Register a user securely
+// Register a user (insecure, no hashing)
 app.post('/register', async (req, res) => {
   const { UserID, Password } = req.body;
 
   try {
-    const hashed = await bcrypt.hash(Password, 10);
     await pool.query(
       'INSERT INTO "user" ("UserID", "Password") VALUES ($1, $2)',
-      [UserID, hashed]
+      [UserID, Password]
     );
     res.send('User registered');
   } catch (err) {
@@ -34,24 +32,17 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// Login securely
+// Login (insecure, plain text comparison)
 app.post('/login', async (req, res) => {
   const { UserID, Password } = req.body;
 
   try {
     const result = await pool.query(
-      'SELECT * FROM "user" WHERE "UserID" = $1',
-      [UserID]
+      'SELECT * FROM "user" WHERE "UserID" = $1 AND "Password" = $2',
+      [UserID, Password]
     );
 
-    if (result.rows.length === 0) {
-      return res.status(401).send('Invalid credentials');
-    }
-
-    const user = result.rows[0];
-    const isMatch = await bcrypt.compare(Password, user.Password);
-
-    if (isMatch) {
+    if (result.rows.length > 0) {
       res.send('Login successful');
     } else {
       res.status(401).send('Invalid credentials');
@@ -62,17 +53,8 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/users', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM users');
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Failed to fetch users');
-  }
-});
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
