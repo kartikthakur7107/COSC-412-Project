@@ -1,30 +1,22 @@
 const express = require('express');
-const mysql = require('mysql2');
-const cors = require('cors');
+const pool = require('./db');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-// MySQL connection
-const db = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: 'FixMyRide'
+// Example route
+app.get('/', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.send(`Database connected: ${result.rows[0].now}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Database connection error');
+  }
 });
 
-// Test route
-app.get('/api/users', (req, res) => {
-  db.query('SELECT * FROM User', (err, results) => {
-    if (err) return res.status(500).json({ error: err });
-    res.json(results);
-  });
-});
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
