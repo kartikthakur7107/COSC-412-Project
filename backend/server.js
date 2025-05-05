@@ -38,7 +38,7 @@ app.post('/login', async (req, res) => {
   const { UserID, Password } = req.body;
 
   try {
-    const result = await pool.query('SELECT * FROM users WHERE username = $1 AND password = $2', [UserID, Password]);
+    const result = await pool.query('SELECT * FROM user WHERE UserID = $1 AND Password = $2', [UserID, Password]);
     if (result.rows.length > 0) {
       res.send('Login successful');
     } else {
