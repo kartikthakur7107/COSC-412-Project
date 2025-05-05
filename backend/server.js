@@ -9,8 +9,8 @@ app.use(cors({
   origin: 'https://kartikthakur7107.github.io', // or "*" to allow all origins
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
-  credentials: true
 }));
+app.options('*', cors());
 
 // Check DB connection
 app.get('/', async (req, res) => {
