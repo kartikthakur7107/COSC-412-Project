@@ -89,7 +89,7 @@
     const Password = document.getElementById("Password").value;
 
     try {
-      const response = await fetch("https://cosc-412-project-5-5-1.onrender.com", {
+      const response = await fetch("https://cosc-412-project-5-5-1.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ UserID, Password })
