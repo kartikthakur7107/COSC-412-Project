@@ -80,6 +80,19 @@
 
   <p id="message"></p>
 
+
+   <script>
+  fetch("https://cosc-412-project-5-5-1.onrender.com/users")
+    .then(response => response.json())
+    .then(data => {
+      console.log("Fetched users:");
+      console.table(data); // pretty table in browser console
+    })
+    .catch(err => {
+      console.error("Error fetching users:", err);
+    });
+</script>
+   
   <script>
   document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
