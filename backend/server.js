@@ -24,12 +24,12 @@ app.get('/', async (req, res) => {
 
 // Register a user (insecure, no hashing)
 app.post('/register', async (req, res) => {
-  const { UserID, Password } = req.body;
+  const { UserID, Password, FullName, Email, PNum, Address } = req.body;
 
   try {
     await pool.query(
-      'INSERT INTO "user" ("UserID", "Password") VALUES ($1, $2)',
-      [UserID, Password]
+      'INSERT INTO "user" ("UserID", "Password", "FullName", "Email", "PNum", "Address") VALUES ($1, $2, $3, $4, $5, $6)',
+      [UserID, Password, FullName, Email, PNum, Address]
     );
     res.send('User registered');
   } catch (err) {
