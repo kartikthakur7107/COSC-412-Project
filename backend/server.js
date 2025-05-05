@@ -18,13 +18,13 @@ app.use(express.json());
 
 // Register a user (for testing)
 app.post('/register', async (req, res) => {
-  const { username, password } = req.body;
+  const { UserID, Password } = req.body;
 
   try {
     const hashed = await bcrypt.hash(password, 10);
     await pool.query(
-      'INSERT INTO users (username, password) VALUES ($1, $2)',
-      [username, hashed]
+      'INSERT INTO users (UserID, Password) VALUES ($1, $2)',
+      [UserID, Password]
     );
     res.send('User registered');
   } catch (err) {
@@ -35,10 +35,10 @@ app.post('/register', async (req, res) => {
 
 // Login
 app.post('/login', async (req, res) => {
-  const { username, password } = req.body;
+  const { UserID, Password } = req.body;
 
   try {
-    const result = await pool.query('SELECT * FROM users WHERE username = $1 AND password = $2', [username, password]);
+    const result = await pool.query('SELECT * FROM users WHERE username = $1 AND password = $2', [UserID, Password]);
     if (result.rows.length > 0) {
       res.send('Login successful');
     } else {
