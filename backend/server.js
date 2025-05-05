@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors({
   origin: 'https://kartikthakur7107.github.io', // or "*" to allow all origins
   methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
+  allowedHeaders: ['Content-Type']
 }));
 app.options('*', cors());
 
