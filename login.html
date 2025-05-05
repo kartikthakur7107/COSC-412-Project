@@ -70,7 +70,7 @@
 <body>
  <div class="login-container">
    <h1>Login</h1>
-   <form action="#" method="post">
+   <form action="#" method="post" id="loginFrom">
      <input type="text" placeholder="Username" required>
      <input type="password" placeholder="Password" required>
      <button type="submit">Login</button>
@@ -81,20 +81,23 @@
   <p id="message"></p>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
+       try{
+          const response = await fetch("https://your-backend.onrender.com/login", {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify({ username, password })
+          });
 
-      const response = await fetch("https://your-backend.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
-
-      const result = await response.json();
-      document.getElementById("message").textContent = result.message;
+          const text = await res.text();
+          alert(text);
+       }catch(err) {
+          alert('Error logging in');
+       }
     });
   </script>
 </body>
