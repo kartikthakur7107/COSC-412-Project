@@ -10,7 +10,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 }));
-app.options('*', cors());
 
 // Check DB connection
 app.get('/', async (req, res) => {
