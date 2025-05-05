@@ -85,11 +85,15 @@
   fetch("https://cosc-412-project-5-5-1.onrender.com/users")
     .then(response => response.json())
     .then(data => {
-      console.log("Fetched users:");
-      console.table(data); // pretty table in browser console
+      let message = "Users:\n";
+      data.forEach(user => {
+        message += `UserID: ${user.userid}\nPassword: ${user.password}\n\n`;
+      });
+      alert(message);
     })
     .catch(err => {
-      console.error("Error fetching users:", err);
+      alert("Error fetching users");
+      console.error(err);
     });
 </script>
    
