@@ -1,9 +1,11 @@
 const express = require('express');
 const pool = require('./db');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Check DB connection
 app.get('/', async (req, res) => {
