@@ -120,7 +120,8 @@
     }
 
     // Add selected mechanic to appointment data
-    appointmentData.mechanic = mechanicName;
+    appointmentData.mechanicID = mechanicName;
+    appointmentData.UserID = 'U001'
 
     try {
       const response = await fetch('https://cosc-412-project-5-5-1.onrender.com/book', {
