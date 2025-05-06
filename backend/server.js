@@ -9,8 +9,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
 }));
-app.options('*', cors(corsOptions)); // ✅ handle preflight
-app.use(express.json());
 
 // Check DB connection
 app.get('/', async (req, res) => {
