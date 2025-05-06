@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FixMyRide - Book Mechanic</title>
+  <body>
+
+    <div class="form-container">
+      <h1>Book Your Mechanic</h1>
+      <form action="mechanic.html" method="get">
+        <input type="text" name="carModel" placeholder="Car Model (e.g. Civic, Corolla)" required>
+        <input type="text" name="carYear" placeholder="Year (e.g. 2018)" required>
+        <input type="text" name="carCompany" placeholder="Company (e.g. Honda, Toyota)" required>
+        <textarea name="issue" placeholder="What's wrong with your vehicle?" rows="4" required></textarea>
+        <button type="submit">Next: Select Mechanic</button>
+      </form>
+    </div>
+    
+    </body>
   <style>
     body {
       margin: 0;
@@ -61,18 +75,4 @@
     }
   </style>
 </head>
-<body>
-
-<div class="form-container">
-  <h1>Book Your Mechanic</h1>
-  <form action="mechanic.html" method="get">
-    <input type="text" name="carModel" placeholder="Car Model (e.g. Civic, Corolla)" required>
-    <input type="text" name="carYear" placeholder="Year (e.g. 2018)" required>
-    <input type="text" name="carCompany" placeholder="Company (e.g. Honda, Toyota)" required>
-    <textarea name="issue" placeholder="What's wrong with your vehicle?" rows="4" required></textarea>
-    <button type="submit">Next: Select Mechanic</button>
-  </form>
-</div>
-
-</body>
 </html>
