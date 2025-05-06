@@ -8,7 +8,7 @@
 
     <div class="form-container">
       <h1>Book Your Mechanic</h1>
-      <form action="mechanic.html" method="get">
+      <form action="mechanic.html" method="get" id="appointmentForm">
         <input type="text" name="RequestID" placeholder="RequestID" required>
         <input type="text" name="carmodel" placeholder="Car Model (e.g. Civic, Corolla)" required>
         <input type="text" name="caryear" placeholder="Year (e.g. 2018)" required>
@@ -17,6 +17,31 @@
         <button type="submit">Next: Select Mechanic</button>
       </form>
     </div>
+
+    <script>
+  document.getElementById('appointmentForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch('https://your-backend-url.com/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert('Appointment booked successfully!');
+        window.location.href = 'mechanic.html';
+      } else {
+        alert('Error booking appointment.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Server error.');
+    }
+  });
     
     </body>
   <style>
