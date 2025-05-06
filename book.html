@@ -19,30 +19,20 @@
     </div>
 
     <script>
-  document.getElementById('appointmentForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
+  document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent default form submission
+
     const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(formData.entries()); // Convert form data to an object
 
-    try {
-      const res = await fetch('https://your-backend-url.com/book', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
+    // Store the data in localStorage
+    localStorage.setItem('appointmentData', JSON.stringify(data));
 
-      if (res.ok) {
-        alert('Appointment booked successfully!');
-        window.location.href = 'mechanic.html';
-      } else {
-        alert('Error booking appointment.');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Server error.');
-    }
+    // Redirect to mechanic selection page
+    window.location.href = 'mechanic.html';
   });
-    </script>
+</script>
+    
     </body>
   <style>
     body {
