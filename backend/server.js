@@ -25,6 +25,7 @@ app.get('/', async (req, res) => {
 
 // Register a user (insecure, no hashing)
 app.post('/register', async (req, res) => {
+  console.log(req.body);
   const { UserID, Password, Email, FullName, PNum, Address } = req.body;
 
   try {
