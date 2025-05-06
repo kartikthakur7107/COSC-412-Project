@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+app.use(express.json());
 app.use(cors({
   origin: 'https://kartikthakur7107.github.io', // or "*" to allow all origins
   methods: ['GET', 'POST', 'OPTIONS'],
