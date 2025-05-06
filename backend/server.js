@@ -63,12 +63,12 @@ app.post('/register', async (req, res) => {
 // Book an service request
 app.post('/book', async (req, res) => {
   console.log(req.body);
-  const { RequestID, carmodel, caryear, carcompany, Descrption, MechanicID, UserID } = req.body;
+  const { RequestID, carmodel, caryear, carcompany, Descrption, MechanicID, CustomerID } = req.body;
 
   try {
     await pool.query(
-      'INSERT INTO servicerequest ("RequestID", "carModel", "carYear", "carcompany", "Descrption", "MechanicID", "UserID") VALUES ($1, $2, $3, $4, $5, $6, $7)',
-      [RequestID, carmodel, caryear, carcompany, Descrption, MechanicID,  UserID]
+      'INSERT INTO servicerequest ("RequestID", "carmodel", "caryear", "carcompany", "Descrption", "MechanicID", "CustomerID") VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      [RequestID, carmodel, caryear, carcompany, Descrption, MechanicID,  CustomerID]
     );
     res.send('Service Request confirmed');
   } catch (err) {
