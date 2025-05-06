@@ -1,0 +1,111 @@
+:root {
+    --font-family: 'Segoe UI', Tahoma, sans-serif;
+    --color-primary: #2c3e50;
+    --color-accent: #4e978c;
+    --bg-page: #f5f7fa;
+    --bg-card: #ffffff;
+    --text-light: #ffffff;
+    --text-dark: #2c3e50;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    background: var(--bg-page);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .site-header {
+    background: var(--color-accent);
+    padding: 1rem 2rem;
+    text-align: center;
+    color: var(--text-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    width: 100%;
+    margin: 2rem auto;
+  }
+  
+  .chat-window {
+    flex: 1;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 1rem;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .msg {
+    max-width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 20px;
+    line-height: 1.4;
+  }
+  
+  /* User bubbles (right side) */
+  .user {
+    background: var(--color-primary);
+    color: var(--text-light);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  
+  /* Bot bubbles (left side) */
+  .bot {
+    background: #ecf0f1;
+    color: var(--text-dark);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+  
+  .chat-form {
+    display: flex;
+    margin-top: 1rem;
+  }
+  
+  .chat-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .chat-form input:focus {
+    border-color: var(--color-accent);
+  }
+  
+  .chat-form .btn {
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    border: none;
+    background: var(--color-accent);
+    color: var(--text-light);
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .chat-form .btn:hover {
+    background: #2980b9;
+  }
+  

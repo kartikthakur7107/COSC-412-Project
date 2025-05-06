@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🔧 FixMyRide Diagnosis</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>🔧 FixMyRide Diagnosis</h1>
+  </header>
+
+  <main class="chat-container">
+    <div id="chat" class="chat-window"></div>
+
+    <form id="form" class="chat-form">
+      <input
+        id="input"
+        type="text"
+        placeholder="Describe your car’s issue…"
+        autocomplete="off"
+        required
+      />
+      <button type="submit" class="btn">Send</button>
+    </form>
+  </main>
+
+  <script>
+    const chat = document.getElementById('chat');
+    const form = document.getElementById('form');
+    const input = document.getElementById('input');
+
+    function addMessage(text, cls) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      div.className = 'msg ' + cls;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const msg = input.value.trim();
+      if (!msg) return;
+      addMessage(msg, 'user');
+      input.value = '';
+      addMessage('…', 'bot');
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: msg })
+        });
+        const { reply, error } = await res.json();
+        chat.lastChild.textContent = error || reply;
+      } catch {
+        chat.lastChild.textContent = '⚠️ Network error';
+      }
+    });
+  </script>
+</body>
+</html>
