@@ -37,7 +37,6 @@ app.post('/register', async (req, res) => {
     res.status(500).send('Registration failed');
   }
 });
-
 // Login (insecure, plain text comparison)
 app.post('/login', async (req, res) => {
   const { UserID, Password } = req.body;
