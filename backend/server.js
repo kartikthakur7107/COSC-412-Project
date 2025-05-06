@@ -60,6 +60,22 @@ app.post('/register', async (req, res) => {
   }
 });
 
+// Book an appointment
+app.post('/book', async (req, res) => {
+  const { RequestID, carmodel, caryear, carcompany, issue } = req.body;
+
+  try {
+    await pool.query(
+      'INSERT INTO appointment ("RequestID", "CarModel", "CarYear", "CarCompany", "Issue") VALUES ($1, $2, $3, $4, $5)',
+      [RequestID, carmodel, caryear, carcompany, issue]
+    );
+    res.send('Appointment booked');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Failed to book appointment');
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
