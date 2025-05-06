@@ -62,17 +62,17 @@ app.post('/register', async (req, res) => {
 
 // Book an appointment
 app.post('/book', async (req, res) => {
-  const { RequestID, carmodel, caryear, carcompany, issue } = req.body;
+  const { RequestID, carmodel, caryear, carcompany, issue, mechanic } = req.body;
 
   try {
     await pool.query(
-      'INSERT INTO appointment ("RequestID", "CarModel", "CarYear", "CarCompany", "Issue") VALUES ($1, $2, $3, $4, $5)',
-      [RequestID, carmodel, caryear, carcompany, issue]
+      'INSERT INTO appointment ("RequestID", "CarModel", "CarYear", "CarCompany", "Issue", "Mechanic") VALUES ($1, $2, $3, $4, $5, $6)',
+      [RequestID, carmodel, caryear, carcompany, issue, mechanic]
     );
-    res.send('Appointment booked');
+    res.send('Appointment confirmed');
   } catch (err) {
     console.error(err);
-    res.status(500).send('Failed to book appointment');
+    res.status(500).send('Booking failed');
   }
 });
 
