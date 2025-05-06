@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select a Mechanic</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #739d9a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .mechanics-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      max-width: 900px;
+      width: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2d4e4a;
+      margin-bottom: 30px;
+    }
+
+    .mechanic-list {
+      display: flex;
+      gap: 20px;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .mechanic-card {
+      flex: 1 1 250px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    .mechanic-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .mechanic-card h3 {
+      margin: 10px 0 5px;
+      color: #333;
+    }
+
+    .mechanic-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .mechanic-card button {
+      background-color: #ff6584;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .mechanic-card button:hover {
+      background-color: #e05574;
+    }
+  </style>
+</head>
+<body>
+
+<div class="mechanics-container">
+  <h1>Select Your Mechanic</h1>
+  <div class="mechanic-list">
+    <div class="mechanic-card">
+      <img src="https://cdn-icons-png.freepik.com/512/320/320348.png" alt="Mechanic">
+      <h3>Jake Thompson</h3>
+      <p>15+ years experience in engine and brake repairs. Fast, reliable, and friendly.</p>
+      <p><strong>Location:</strong> Towson, MD 21204</p>
+      <button>Book Jake</button>
+    </div>
+
+    <div class="mechanic-card">
+      <img src="https://cdn-icons-png.freepik.com/512/1154/1154988.png" alt="Mechanic">
+      <h3>Lisa Moreno</h3>
+      <p>Specialist in diagnostics, oil change, and hybrid car servicing. Customer-first approach.</p>
+      <p><strong>Location:</strong> Towson, MD 21286</p>
+      <button>Book Lisa</button>
+    </div>
+
+    <div class="mechanic-card">
+      <img src="https://cdn-icons-png.freepik.com/512/2321/2321006.png" alt="Mechanic">
+      <h3>Chris Darnell</h3>
+      <p>Trusted mobile mechanic for SUVs and trucks. Available weekends. ASE Certified.</p>
+      <p><strong>Location:</strong> Towson, MD 21252</p>
+      <button>Book Chris</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
