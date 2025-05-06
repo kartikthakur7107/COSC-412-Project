@@ -111,6 +111,46 @@
     </div>
   </div>
 </div>
+<script>
+  document.getElementById('confirmButton').addEventListener('click', async () => {
+    const selectedMechanic = document.getElementById('mechanicSelect').value;
+    
+    if (!selectedMechanic) {
+      alert('Please choose a mechanic.');
+      return;
+    }
 
+    // Get the saved appointment data from localStorage
+    const appointmentData = JSON.parse(localStorage.getItem('appointmentData'));
+
+    if (!appointmentData) {
+      alert('No appointment data found. Please start over.');
+      return;
+    }
+
+    // Add the selected mechanic to the data
+    appointmentData.mechanic = selectedMechanic;
+
+    try {
+      // Submit complete appointment data to backend
+      const response = await fetch('https://cosc-412-project-5-5-1.onrender.com/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(appointmentData)
+      });
+
+      if (response.ok) {
+        alert('Appointment confirmed!');
+        localStorage.removeItem('appointmentData'); // Clear stored data
+        window.location.href = 'confirmation.html';
+      } else {
+        alert('Failed to confirm appointment.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Server error. Please try again.');
+    }
+  });
+</script>
 </body>
 </html>
