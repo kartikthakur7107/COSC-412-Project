@@ -29,7 +29,7 @@ app.post('/register', async (req, res) => {
   try {
     await pool.query(
       'INSERT INTO "user" ("UserID", "Password", "Email", "FullName", "PNum", "Address") VALUES ($1, $2, $3, $4, $5, $6)',
-      [UserID, Password, Email, FullName, Pnum, Address]
+      [UserID, Password, Email, FullName, PNum, Address]
     );
     res.send('User registered');
   } catch (err) {
@@ -63,8 +63,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
