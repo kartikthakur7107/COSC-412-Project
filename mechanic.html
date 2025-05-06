@@ -112,27 +112,18 @@
   </div>
 </div>
 <script>
-  document.getElementById('confirmButton').addEventListener('click', async () => {
-    const selectedMechanic = document.getElementById('mechanicSelect').value;
-    
-    if (!selectedMechanic) {
-      alert('Please choose a mechanic.');
-      return;
-    }
-
-    // Get the saved appointment data from localStorage
+  async function bookMechanic(mechanicName) {
     const appointmentData = JSON.parse(localStorage.getItem('appointmentData'));
 
     if (!appointmentData) {
-      alert('No appointment data found. Please start over.');
+      alert('No appointment data found. Please go back and fill out the form.');
       return;
     }
 
-    // Add the selected mechanic to the data
-    appointmentData.mechanic = selectedMechanic;
+    // Add selected mechanic to appointment data
+    appointmentData.mechanic = mechanicName;
 
     try {
-      // Submit complete appointment data to backend
       const response = await fetch('https://cosc-412-project-5-5-1.onrender.com/book', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -141,7 +132,7 @@
 
       if (response.ok) {
         alert('Appointment confirmed!');
-        localStorage.removeItem('appointmentData'); // Clear stored data
+        localStorage.removeItem('appointmentData');
         window.location.href = 'confirmation.html';
       } else {
         alert('Failed to confirm appointment.');
@@ -150,7 +141,7 @@
       console.error(error);
       alert('Server error. Please try again.');
     }
-  });
+  }
 </script>
 </body>
 </html>
