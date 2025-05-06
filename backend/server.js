@@ -62,12 +62,12 @@ app.post('/register', async (req, res) => {
 
 // Book an appointment
 app.post('/book', async (req, res) => {
-  const { RequestID, carmodel, caryear, carcompany, issue, mechanic } = req.body;
+  const { RequestID, carmodel, caryear, carcompany, Descrption, MechanicID, UserID } = req.body;
 
   try {
     await pool.query(
-      'INSERT INTO appointment ("RequestID", "CarModel", "CarYear", "CarCompany", "Issue", "Mechanic") VALUES ($1, $2, $3, $4, $5, $6)',
-      [RequestID, carmodel, caryear, carcompany, issue, mechanic]
+      'INSERT INTO appointment ("RequestID", "CarModel", "CarYear", "CarCompany", "Descrption", "MechanicID", "UserID") VALUES ($1, $2, $3, $4, $5, $6, $7)',
+      [RequestID, carmodel, caryear, carcompany, Descrption, MechanicID,  UserID]
     );
     res.send('Appointment confirmed');
   } catch (err) {
