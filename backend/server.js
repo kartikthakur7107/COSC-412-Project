@@ -24,12 +24,12 @@ app.get('/', async (req, res) => {
 
 // Register a user (insecure, no hashing)
 app.post('/register', async (req, res) => {
-  const { UserID, Password, FullName, Email, PNum, Address } = req.body;
+  const { UserID, Password } = req.body;
 
   try {
     await pool.query(
-      'INSERT INTO "user" ("UserID", "Password", "FullName", "Email", "PNum", "Address") VALUES ($1, $2, $3, $4, $5, $6)',
-      [UserID, Password, FullName, Email, PNum, Address]
+      'INSERT INTO "user" ("UserID", "Password") VALUES ($1, $2)',
+      [UserID, Password]
     );
     res.send('User registered');
   } catch (err) {
@@ -59,6 +59,10 @@ app.post('/login', async (req, res) => {
   }
 });
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
