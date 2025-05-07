@@ -121,7 +121,7 @@
 
     // Add selected mechanic to appointment data
     appointmentData.MechanicID = mechanicName;
-    appointmentData.CustomerID = 'U001'
+    appointmentData.UserID = localStorage.getItem('CustomerID') || 'U001';
 
     try {
       const response = await fetch('https://cosc-412-project-5-5-1.onrender.com/book', {
