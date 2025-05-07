@@ -97,15 +97,25 @@
         body: JSON.stringify({ UserID, Password }),
       });
 
-      const result = await response.json(); // Parse the response as JSON
-      
-      console.log(result); // Log the response to see what you are getting
+      const resultText = await response.text(); // Get the raw text response from the server
 
-      if (response.ok && result.UserID) {
-        localStorage.setItem('CustomerID', result.UserID); // Save UserID to localStorage
-        window.location.href = "index.html"; // Redirect after successful login
+      if (response.ok) {
+        try {
+          const result = JSON.parse(resultText); // Try parsing the response as JSON
+          console.log(result); // Log the response to see what you are getting
+          if (result.UserID) {
+            localStorage.setItem('CustomerID', result.UserID); // Save UserID to localStorage
+            window.location.href = "index.html"; // Redirect after successful login
+          } else {
+            alert("Login failed: " + result.message || "Unknown error"); // Display server message on failure
+          }
+        } catch (jsonErr) {
+          console.error("Error parsing JSON:", jsonErr);
+          alert("Unexpected response format.");
+        }
       } else {
-        alert("Login failed: " + result.message); // Display server message on failure
+        // Handle 401 error or other HTTP errors
+        alert("Login failed: " + resultText);
       }
     } catch (err) {
       console.error(err);
