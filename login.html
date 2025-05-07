@@ -98,7 +98,7 @@
         const resultText = await response.text(); // Handles plain text response
 
         if (response.ok) {
-          alert("Login successful!");
+          localStorage.setItem('CustomerID', data.UserID); // ✅ Save to localStorage
           window.location.href = "index.html"; // redirect after successful login
         } else {
           alert("Login failed: " + resultText);
