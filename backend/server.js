@@ -24,6 +24,7 @@ app.get('/', async (req, res) => {
 
 // Login (insecure, plain text comparison)
 app.post('/login', async (req, res) => {
+  console.log(req.body);
   const { UserID, Password } = req.body;
 
   try {
