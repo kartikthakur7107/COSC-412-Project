@@ -33,7 +33,7 @@ app.post('/login', async (req, res) => {
     );
 
     if (result.rows.length > 0) {
-      res.send('Login successful');
+      res.json({ message: 'Login successful', UserID: result.rows[0].UserID });
     } else {
       res.status(401).send('Invalid credentials');
     }
