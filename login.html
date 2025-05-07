@@ -85,6 +85,8 @@
     document.getElementById("loginForm").addEventListener("submit", async function (e) {
       e.preventDefault();
 
+      localStorage.removeItem('CustomerID');
+      
       const UserID = document.getElementById("UserID").value;
       const Password = document.getElementById("Password").value;
 
